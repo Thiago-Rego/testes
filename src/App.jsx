@@ -1,54 +1,14 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Test from "./pages/Test";
+import "./App.css";
 
 function App() {
-  // Declaração dos estados para armazenar os dados recebidos da API
-  const [data, setData] = useState([]);
-  const [sales, setSales] = useState([]);
-  const [month, setMonth] = useState([]);
-
-  // Efeito colateral para buscar dados da API quando o componente for montado
-  useEffect(() => {
-    // Função assíncrona para buscar os dados
-    const fetchData = async () => {
-      try {
-        // Requisição GET para a API para buscar dados
-        const response = await axios.get('http://127.0.0.1:8000/sales/resumo');
-        
-        // Atualiza o estado 'data' com os dados recebidos da API
-        setData(response.data);
-
-        // Mapeia os dados recebidos para extrair vendas e meses
-        const sales = response.data.map((item) => item.vl_atendido);
-        const month = response.data.map((item) => item.data_saida);
-
-        // Atualiza os estados 'sales' e 'month' com os valores extraídos
-        setMonth(month);
-        setSales(sales);
-      } catch (error) {
-        // Loga qualquer erro que ocorra durante a requisição
-        console.log(error);
-      }
-    };
-
-    // Chama a função para buscar os dados
-    fetchData();
-  }, []); // O array vazio significa que o efeito é executado apenas uma vez após a montagem do componente
-
   return (
-    <div>
-      <h1>Sales Month</h1>
-      <ul>
-        {/* Mapeia os dados para criar uma lista de itens */}
-        {data.map((item, index) => (
-          <li key={index}>
-            {/* Exibe a data e o valor atendido para cada item */}
-            <p>{item.data_saida} - {item.vl_atendido}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/test" element={<Test />} />
+      </Routes>
+    </Router>
   );
 }
 
