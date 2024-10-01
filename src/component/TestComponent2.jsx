@@ -3,7 +3,7 @@ import axios from "axios";
 
 const TestComponent2 = () => {
   const [data, setData] = useState([]);
-  const [selectedFilial, setSelectedFilial] = useState([1]);
+  const [selectedFilial, setSelectedFilial] = useState([7]);
   const [year, setYear] = useState([new Date().getFullYear()]);
   const [month, setMonth] = useState([new Date().getMonth() + 1]);
   const [filteredData, setFilteredData] = useState([]);
@@ -23,7 +23,7 @@ const TestComponent2 = () => {
 
   useEffect(() => {
     if (data.length > 0) {
-      const filtered = data.filter(item => {
+      const filtered = data.filter((item) => {
         const itemYear = new Date(item.data_saida).getFullYear();
         const itemMonth = new Date(item.data_saida).getMonth();
         return (
@@ -36,26 +36,10 @@ const TestComponent2 = () => {
       setFilteredData(filtered);
     }
   }, [data, selectedFilial, year, month]);
- 
 
-  console.log("Filtered Data:", month ); // Para depuração
+  console.log("Filtered Data:", data); // Para depuração
 
-  return (
-    <div>
-      <h1>Teste</h1>
-      <p>Este é um componente de teste</p>
-      {/* Exiba os dados filtrados, se necessário */}
-      {filteredData.length > 0 ? (
-        <ul>
-          {filteredData.map((item, index) => (
-            <li key={index}>{JSON.stringify(item.data)}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>Nenhum dado encontrado para o período selecionado.</p>
-      )}
-    </div>
-  );
+  return <div></div>;
 };
 
 export default TestComponent2;

@@ -1,9 +1,9 @@
-import TestComponent2 from "../component/TestComponent2";
+import BarChartTeste from "../component/BarChartTeste";
 
 const Test = () => {
   return (
     <div>
-      <TestComponent2 />
+      <BarChartTeste />
     </div>
   );
 };
